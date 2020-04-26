@@ -1,5 +1,7 @@
-[X] Insert time blocks
-[] Allow user to input schedule
-[] button to save saves inputted information to local storage
-[] function to read time and update page (colors on schedule) based on time
-[] function to update day presented on planner
+[X] add time blocks for 8am-6pm each with a textarea and save button
+[X] Allow user to input schedule
+[X] button saves inputted information to local storage
+[X] variable to read current time
+[X] blocks in the past are gray, the current hour is red, and the future is green
+[X] function to update day presented on planner
+[X] get list from local storage upon reload of page
