@@ -2,8 +2,14 @@ $(document).ready(function(){
 
     var currentDay = moment().format('MMMM Do YYYY');
     $("#currentDay").text(currentDay);
-    var currentHour = moment().format('HH')
+    var currentHour = moment().format('HH');
+    var todos = ["", "", "", "","","","","","",""];
     // console.log(currentHour)
+    // get items from local storage on page load
+    var getList = localStorage.getItem("To-do-list");
+    if (getList !== null){
+        todos = JSON.parse(getList)
+    }
 
     // function to create text blocks for schedule
     var times = ["8am", "9am", "10am", "11am", "12pm", "1pm", "2pm", "3pm", "4pm", "5pm", "6pm"]
@@ -21,6 +27,7 @@ $(document).ready(function(){
         newp.addClass("col-sm-1 time-block hour");
         newBtn.attr("id", milTimes[i]);
         newInput.attr("data-attribute", milTimes[i]);
+        newInput.val(todos[i]);
         newp.text(times[i]);
         if (currentHour === milTimes[i]) {
             newInput.addClass("col-sm-10 description present");
@@ -39,9 +46,20 @@ $(document).ready(function(){
     
 
 
+
     $(".saveBtn").on("click", function(){
-        // var classeType = $(".description");
-        var input = $(this).attr();
+        
+        // var button = $(this).attr("id");
+        var text = $(this).siblings(".description").val();
+        var timeIndex = $(this).attr("id");
+        var milIndex = milTimes.indexOf(timeIndex);
+        todos[milIndex] = text;
+        var strTodos = JSON.stringify(todos);
+        localStorage.setItem("To-do-list", strTodos);
+        // localStorage.setItem("textarea", textarea);
+        
+
+        
         
         // console.log(input);
         // var value = input.val()
@@ -50,22 +68,8 @@ $(document).ready(function(){
     
     });
 
+
+
     // console.log($(".hour").name.val());
-
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
 })
